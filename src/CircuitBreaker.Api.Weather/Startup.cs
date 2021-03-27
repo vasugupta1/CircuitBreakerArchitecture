@@ -41,8 +41,10 @@ namespace CircuitBreaker.Api.Weather
             });
 
             services.AddSingleton<IWeatherService>(serviceBuilder => 
-                new WeatherService(serviceBuilder.GetService<IHttpClientFactory>().CreateClient(CircuitBreaker.Services.WeatherService.Models.WeatherApis.OpenWeatherApi), 
-                serviceBuilder.GetService<IHttpClientFactory>().CreateClient(CircuitBreaker.Services.WeatherService.Models.WeatherApis.WeatherApi), 
+                new WeatherService(serviceBuilder.GetService<IHttpClientFactory>()
+                                   .CreateClient(CircuitBreaker.Services.WeatherService.Models.WeatherApis.OpenWeatherApi), 
+                serviceBuilder.GetService<IHttpClientFactory>()
+                                   .CreateClient(CircuitBreaker.Services.WeatherService.Models.WeatherApis.WeatherApi), 
                 serviceBuilder.GetService<IReadOnlyDictionary<string,string>>()));
         }
 
